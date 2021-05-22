@@ -90,7 +90,7 @@ public class IndexServletti extends HttpServlet {
          	}
     	}else if(pswd != null) { 		
     		if(pswd.equals("42")) {
-				resp.sendRedirect("/WEB-INF/proversion.jsp");
+				resp.sendRedirect("/premium");
     		}else{
     		req.setAttribute("msg", "You shall not pass!");
 			req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
