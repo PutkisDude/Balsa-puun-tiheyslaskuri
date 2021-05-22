@@ -12,28 +12,29 @@
 <body>
 
 
-	<form method="get">
+	<form method="get" action="laske">
 	<fieldset><legend>Puun Tiheyslaskuri</legend>
 
 			<label for="paksuus">Paksuus(mm):</label>
-			<input type="text" name="paksuus" value="${paksuus}" required><br>
+			<input type="text" name="paksuus" value="${paksuus}"><br>
 		
 			<label for="pituus">Pituus(mm):</label> 
-			<input type="text" name="pituus" value="${pituus}" required><br>
+			<input type="text" name="pituus" value="${pituus}"><br>
 		
 			<label for="leveys">Leveys(mm):</label>
-			<input type="text" name="leveys" value="${leveys}" required><br>
+			<input type="text" name="leveys" value="${leveys}"><br>
 		
 			 <label for="paino">Paino(g):</label>
-		 	<input type="text" name="paino" value="${paino}" required><br>
+		 	<input type="text" name="paino" value="${paino}"><br>
 		 	<label for="tulos">Tulos: </label>
 		 	${tulos }
-		 	<input type="submit" value="Laske" id="laskubtn">
+		 	<input type="submit" value="Laske" name="laske" id="laskubtn">
+		 			<input type="submit" name="premium" value="Premium version">
+		 	
 		 	
 		</fieldset>
 				 	</form>
 		
-		<input type="submit" value="Premium version">
 		
 		
 		
