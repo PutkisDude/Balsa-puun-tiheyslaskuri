@@ -28,6 +28,7 @@
 		 	<input type="text" name="paino" value="${paino}"><br>
 		 	<label for="tulos">Tulos: </label>
 		 	${tulos }
+		 	<br><br>
 		 	<input type="submit" value="Laske" name="laske" id="laskubtn">
 		 			<input type="submit" name="premium" value="Premium version">
 		 	

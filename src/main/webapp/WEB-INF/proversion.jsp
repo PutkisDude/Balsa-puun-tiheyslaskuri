@@ -13,9 +13,8 @@
 </head>
 <body>
 
-
 	<form method="get" action="premium">
-	<fieldset><legend>Premium Puun Tiheyslaskuri</legend>
+	<fieldset><legend>Puun Tiheyslaskuri - Database versio</legend>
 
 			<label for="paksuus">Paksuus(mm):</label>
 			<input type="text" name="paksuus" value="${paksuus}"><br>
@@ -28,9 +27,11 @@
 		
 			 <label for="paino">Paino(g):</label>
 		 	<input type="text" name="paino" value="${paino}"><br>
-		 	<label for="tulos">Tulos: </label>
-		 	${tulos }
-		 	<input type="submit" value="Laske" name="laske" id="laskubtn">		 	
+		 	
+		 	<label for="grain">Grain</label>
+			<input type="text" name="grain" value="${grain}"><br><br>
+		 	
+		 	<input type="submit" value="laske" name="laske" id="laskubtn">		 	
 		 	
 		</fieldset>
 				 	</form>
@@ -39,6 +40,7 @@
 		<tr>
 			<th>id</th>
 			<th>Tiheys</th>
+			<th>Grain</th>
 			<th>Paksuus</th>
 			<th>Leveys</th>
 			<th>Pituus</th>
@@ -48,16 +50,14 @@
 		<tr>
 			<td>${bal.getId()}</td>
 			<td><fmt:formatNumber value="${bal.getTiheys()}" type="number" maxFractionDigits="2" /></td>
+			<td>${bal.getGrain()}</td>
 			<td>${bal.getKorkeus()}</td>
 			<td>${bal.getLeveys()}</td>
 			<td>${bal.getPituus()}</td>
-			<td><a href="remove?item${bal.getId()}">Poista</a></td>
+			<td><a href="premium?remove=${bal.getId()}">Poista</a></td>
 		</tr>
 		</c:forEach>
 		</table>
-		
-		
-		
 		
 </body>
 </html>
