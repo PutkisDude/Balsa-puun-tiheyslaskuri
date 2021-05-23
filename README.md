@@ -1,4 +1,4 @@
-Koulukurssin harjoitus työ
+Koulukurssin harjoitustyö
 
 database-package:
 	Paketissa on yksinkertainen database.java, jolla yhdistetään oikeaan serveriosoitteeseen.
