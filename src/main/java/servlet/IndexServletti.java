@@ -15,13 +15,18 @@ import balsalaskin.Balsa;
 public class IndexServletti extends HttpServlet {
 
 	String[] parametrit = new String[4];
-
+	private String premiumUrl = "/lauripuuntiheys/premium";
+	private String loginUrl = "/WEB-INF/login.jsp";
+	private String indexUrl = "/WEB-INF/index.jsp";
 	
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     	DecimalFormat desi = new DecimalFormat("0.00");
     	// korkeus, pituus, leveys, paino
+    	
+    	boolean kaikkiTaytetty = false;
+    	
     	String[] parametrit = new String[4];
     	
     	parametrit[0] = req.getParameter("paksuus");
@@ -30,29 +35,34 @@ public class IndexServletti extends HttpServlet {
     	parametrit[3] = req.getParameter("paino");
     	
     	
-    	// Tarkistaa onko form täytetty
-    	boolean kaikkiTaytetty = true;
-    	
-    	for(String i : parametrit) {
-    		if(i == null) {
-    			kaikkiTaytetty = false;
-    			break;
-    		}
-    	}
-    	
-    	if(kaikkiTaytetty) {
-    		
-    		// Syöttää sivulle edellisellä kerralla täytetyt luvut
+    	if(req.getParameter("laske") != null) {
+        	kaikkiTaytetty = true;
+        	
+        	// Tarkistaa onko form täytetty
+        	for(String i : parametrit) {
+        		if(i.isEmpty()) {
+        			kaikkiTaytetty = false;
+        			req.setAttribute("tulos", "Täytä kaikki arvot :)");
+        			break;
+        		}
+        	}
     		req.setAttribute("paksuus", parametrit[0]);
     		req.setAttribute("pituus", parametrit[1]);
     		req.setAttribute("leveys", parametrit[2]);
     		req.setAttribute("paino", parametrit[3]);
+    	}
+
+    	
+    	if(kaikkiTaytetty) {
+    		
+    		// Syöttää sivulle edellisellä kerralla täytetyt luvut
+
     			try{
     				// Tarkistaa, ettei ole pilkkuja ja muuttaa ne pisteiksi
-    				for(String x : parametrit) {
-    					if(x.contains(",")) {
-    						String[] osat = x.split(",");
-    						x = osat[0] + "." + osat[1];
+    				for(int i = 0; i < parametrit.length; i++) {
+    					if(parametrit[i].contains(",")) {
+    						String[] osat = parametrit[i].split(",");
+    						parametrit[i] = osat[0] + "." + osat[1];
     					}
     				}
     				
@@ -68,6 +78,7 @@ public class IndexServletti extends HttpServlet {
         			String tuloste = desi.format(lasku.getTiheys()) + "kg/m3";
         			req.setAttribute("tulos", tuloste);
     			}catch(Exception e){
+    				System.out.println(e);
     				req.setAttribute("tulos", "Tapahtui virhe.");
     			}
 
@@ -75,9 +86,9 @@ public class IndexServletti extends HttpServlet {
     	
     	// lähettää login sivulle, jos painaa premium nappia
     	if(req.getParameter("premium") != null) {
-			req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+			req.getRequestDispatcher(loginUrl).forward(req, resp);
     	}else {
-            req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+            req.getRequestDispatcher(indexUrl).forward(req, resp);
     	}
     }
     
@@ -86,14 +97,14 @@ public class IndexServletti extends HttpServlet {
     	String back = req.getParameter("back");	
     	if(back != null) {
         	if(back.equals("Back to normal")) {
-                req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+                req.getRequestDispatcher(indexUrl).forward(req, resp);
          	}
     	}else if(pswd != null) { 		
     		if(pswd.equals("42")) {
-				resp.sendRedirect("/premium");
+				resp.sendRedirect(premiumUrl);
     		}else{
     		req.setAttribute("msg", "You shall not pass!");
-			req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+			req.getRequestDispatcher(loginUrl).forward(req, resp);
 			}
     	}    
     }

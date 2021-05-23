@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/styles/styles.css">
+<link rel="stylesheet" href="./styles/styles.css">
 <title>Premium puun tiheyslaskuri</title>
 </head>
 <body>
@@ -17,24 +17,24 @@
 	<fieldset><legend>Puun Tiheyslaskuri - Database versio</legend>
 
 			<label for="paksuus">Paksuus(mm):</label>
-			<input type="text" name="paksuus" value="${paksuus}"><br>
+			<input type="text" name="paksuus" value="${paksuus}" placeholder="0.00"><br>
 		
 			<label for="pituus">Pituus(mm):</label> 
-			<input type="text" name="pituus" value="${pituus}"><br>
+			<input type="text" name="pituus" value="${pituus}" placeholder="0.00"><br>
 		
 			<label for="leveys">Leveys(mm):</label>
-			<input type="text" name="leveys" value="${leveys}"><br>
+			<input type="text" name="leveys" value="${leveys}" placeholder="0.00"><br>
 		
 			 <label for="paino">Paino(g):</label>
-		 	<input type="text" name="paino" value="${paino}"><br>
+		 	<input type="text" name="paino" value="${paino}" placeholder="0.00"><br>
 		 	
-		 	<label for="grain">Grain</label>
-			<input type="text" name="grain" value="${grain}"><br><br>
+		 	<label for="grain">Grain(A-C)</label>
+			<input type="text" pattern="[a-cA-C]" name="grain" value="${grain}" placeholder="A-C"><br><br>
 		 	
 		 	<input type="submit" value="laske" name="laske" id="laskubtn">		 	
 		 	
 		</fieldset>
-				 	</form>
+				 	</form>				 	
 				 	
 		<table>
 		<tr>
